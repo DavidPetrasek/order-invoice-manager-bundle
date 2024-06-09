@@ -1,11 +1,11 @@
 {
-    "name": "psys/simple-order-invoice",
-    "description": "Simple order and invoice manager",
+    "name": "psys/order-invoice-manager-bundle",
+    "description": "Create and save orders and their invoices. Export invoices.",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Psys\\SimpleOrderInvoice\\": "src/"
+            "Psys\\OrderInvoiceManagerBundle\\": "src/"
         }
     },
     "authors": [
@@ -19,7 +19,6 @@
     {
         "doctrine/orm": "^2.17",
         "doctrine/doctrine-bundle": "^2.11",
-        "symfony/serializer": "^7.1",
         "twig/twig": "^3.10"
     }
 }

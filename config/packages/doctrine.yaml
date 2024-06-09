@@ -1,0 +1,4 @@
+doctrine:
+    orm:
+        resolve_target_entities:                                     # Specify custom existing entities                          
+            Psys\OrderInvoiceManagerBundle\Entity\UserInterface:     App\Entity\User

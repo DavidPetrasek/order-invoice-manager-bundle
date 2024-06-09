@@ -1,0 +1,4 @@
+
+
+INSERT INTO `oimb_settings`(`option`, `value`) VALUES ('invoice_proforma_sequential_number', '1');
+INSERT INTO `oimb_settings`(`option`, `value`) VALUES ('invoice_final_sequential_number','1');
