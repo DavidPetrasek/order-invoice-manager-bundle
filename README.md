@@ -4,6 +4,9 @@ When you need to create and manage orders and create and export invoices, but yo
 
 # Installation
 
+`composer require psys/order-invoice-manager-bundle`
+
+
 ## 1. Add contents from config files (see config folder) to your config files.
 
 ## 2. Run
