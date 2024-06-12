@@ -68,7 +68,7 @@ class MyInvoiceManager extends InvoiceManager
 ```
 namespace App\Lib;
 
-enum MyCategory :int
+enum MyOrderCategory :int
 {
     case FOO = 1;
     case BAR = 1;
@@ -98,7 +98,7 @@ use App\Lib\MyInvoiceManager;
 public function create_order (OrderManager $orderManager, MyInvoiceManager $invoiceManager)
 {       
     $ent_Order = new Order();
-    $ent_Order->setCategory(MyCategory::FOO);
+    $ent_Order->setCategory(MyOrderCategory::FOO);
     $ent_Order->setPaymentMode(PaymentMode::BANK_ACCOUNT_REGULAR);
     $ent_Order->setPaymentModeBankAccount('5465878565/6556');
     $ent_Order->setUser($this->getUser());
