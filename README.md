@@ -4,9 +4,9 @@ When you need to create and manage orders and create and export invoices, but yo
 
 # Installation
 
-1. Add contents from config files (see config folder) to your config files.
+## 1. Add contents from config files (see config folder) to your config files.
 
-2. Run
+## 2. Run
 
 ```
 symfony console make:migration
@@ -14,14 +14,15 @@ symfony console doctrine:migrations:migrate
 ```
 
 
-3. Initiate DB settings by running
+## 3. Initiate DB settings by running
 
 ```
 INSERT INTO oimb_settings (option, value) VALUES ('invoice_proforma_sequential_number', '1');
 INSERT INTO oimb_settings (option, value) VALUES ('invoice_final_sequential_number','1');
 ```
 
-4. Define your method for exporting invoices (optional)
+## 4. Define your method for exporting invoices (optional)
+
 You can use whatever library you want. This example uses Mpdf. 
 ```
 namespace App\Lib;
@@ -62,7 +63,7 @@ class MyInvoiceManager extends InvoiceManager
 }
 ```
 
-5. Define your own category for Order (mandatory) or Product (optional)
+## 5. Define your own category for Order (mandatory) or Product (optional)
 
 ```
 namespace App\Lib;
@@ -73,6 +74,8 @@ enum MyCategory :int
     case BAR = 1;
 }
 ```
+
+
 
 
 
@@ -154,7 +157,7 @@ use App\Lib\MyInvoiceManager;
 
 public function reset_sequential_numbers (MyInvoiceManager $invoiceManager)
 {       
-    $invoiceManager->resetSequentialNumbersEveryYear(); // Premade method for cron. This cron needs to be run 1 to 10 minutes before a new year.
-    $invoiceManager->resetSequentialNumbers();          // Use for reset numbers whenever you want
+    $invoiceManager->resetSequentialNumbersEveryYear(); // Premade for cron. This cron needs to be run 1 to 10 minutes before a new year.
+    $invoiceManager->resetSequentialNumbers();          // Use for resetting sequential numbers whenever you want
 }
 ```
