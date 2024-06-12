@@ -5,9 +5,7 @@ use Psys\OrderInvoiceManagerBundle\Entity\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Psys\OrderInvoiceManagerBundle\Entity\Invoice;
 use Psys\OrderInvoiceManagerBundle\Entity\Product;
-use Psys\OrderInvoiceManagerBundle\Model\UserInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 
@@ -22,7 +20,7 @@ class OrderManager
     )
     {}    
     
-    function processAndSave (Order $ent_Order)
+    function processAndSaveNewOrder (Order $ent_Order)
     {    
         $orderTotals = $this->calculateOrderTotals($ent_Order);
 

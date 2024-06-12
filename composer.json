@@ -1,6 +1,6 @@
 {
     "name": "psys/order-invoice-manager-bundle",
-    "description": "Create and save orders and their invoices. Export invoices.",
+    "description": "Create and save orders and their invoices. Export invoices using custom library.",
     "type": "library",
     "license": "MIT",
     "autoload": {
