@@ -85,10 +85,11 @@ class OrderManager
         foreach ($ent_Order->getProducts() as $product)
         {
             $productTotals = $this->calculateProductTotals($product);
+            $amount = $product->getAmount();
             
-            if ($product->getVatRate() > 0) {$vatBase += $productTotals['priceVatExcluded'];}
-            $priceVatIncludedTotal += $productTotals['priceVatIncluded'];
-            $priceVatExcludedTotal += $productTotals['priceVatExcluded'];
+            if ($product->getVatRate() > 0) {$vatBase += $productTotals['priceVatExcluded'] * $amount;}
+            $priceVatIncludedTotal += $productTotals['priceVatIncluded'] * $amount;
+            $priceVatExcludedTotal += $productTotals['priceVatExcluded'] * $amount;
         }
         
         $vatTotal = $priceVatIncludedTotal - $priceVatExcludedTotal;
@@ -105,31 +106,28 @@ class OrderManager
     private function calculateProductTotals (Product $product) : array
     {                
         $priceVatIncluded = $product->getPriceVatIncluded();
-        $amountType = $product->getAmountType();
+        $priceVatExcluded = $product->getPriceVatExcluded();
 
+        // Calculate price exclusive of VAT from price inclusive of VAT
         if ( !is_null($priceVatIncluded) ) 
-        {
-            if ($amountType === AmountType::ITEM)
-            {
-                $priceVatIncludedRes = $priceVatIncluded * $product->getAmount();
-            }
-            
-            $priceVatExcludedRes = $this->subtractPercentage ($priceVatIncludedRes, $product->getVatRate());
+        {            
+            $priceVatExcludedRes = $this->subtractPercentage ($priceVatIncluded, $product->getVatRate());
             $product->setPriceVatExcluded($priceVatExcludedRes);
         }
 
-        // TODO
-        // else if ( !is_null($priceVatExcluded) ) 
-        // {
-
-        // }
+        // Calculate price inclusive of VAT from price exclusive of VAT
+        else if ( !is_null($priceVatExcluded) ) 
+        {
+            $priceVatIncluded = ($priceVatExcluded * (100 + $product->getVatRate())) / 100;
+            $product->setPriceVatIncluded($priceVatIncluded);
+        }
         
-        $product->setVat($priceVatIncludedRes - $priceVatExcludedRes);
+        $product->setVat($priceVatIncluded - $priceVatExcluded);
 
         return 
         [
-            'priceVatIncluded' => $priceVatIncludedRes,
-            'priceVatExcluded' => $priceVatExcludedRes,
+            'priceVatIncluded' => $priceVatIncluded,
+            'priceVatExcluded' => $priceVatExcluded,
         ];
     }
     

@@ -111,8 +111,8 @@ public function create_order (OrderManager $orderManager, MyInvoiceManager $invo
     $ent_Order->addProducts(
         (new Product())
             ->setName('Foo')
-            ->setPriceVatIncluded(1599)     // This property is currently used for calculating product totals
-            ->setPriceVatExcluded(1300)     // This property is currently not supported for calculating product totals. Will be added in the future.
+            ->setPriceVatIncluded(1599)    // If not set, it will be automatically calculated from price exclusive of VAT
+            ->setPriceVatExcluded(1300)    // If not set, it will be automatically calculated from price inclusive of VAT
             ->setVatRate(21)
             ->setAmount(1)
             ->setAmountType(AmountType::ITEM)
