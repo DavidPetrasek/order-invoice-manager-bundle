@@ -109,14 +109,14 @@ class OrderManager
         $priceVatExcluded = $product->getPriceVatExcluded();
 
         // Calculate price exclusive of VAT from price inclusive of VAT
-        if ( !is_null($priceVatIncluded) ) 
+        if (!empty($priceVatIncluded)) 
         {            
             $priceVatExcludedRes = $this->subtractPercentage ($priceVatIncluded, $product->getVatRate());
             $product->setPriceVatExcluded($priceVatExcludedRes);
         }
 
         // Calculate price inclusive of VAT from price exclusive of VAT
-        else if ( !is_null($priceVatExcluded) ) 
+        else if (!empty($priceVatExcluded)) 
         {
             $priceVatIncluded = ($priceVatExcluded * (100 + $product->getVatRate())) / 100;
             $product->setPriceVatIncluded($priceVatIncluded);
