@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a8c8426b34ab6ff7e6a506b6a3d3be4",
+    "content-hash": "b9a9180b0a62d5d42dbae435fdf15c25",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1340,6 +1340,46 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "psys/utils",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DavidPetrasek/php-utils.git",
+                "reference": "6316b9436f003349618c766bd2022fbe482d4423"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DavidPetrasek/php-utils/zipball/6316b9436f003349618c766bd2022fbe482d4423",
+                "reference": "6316b9436f003349618c766bd2022fbe482d4423",
+                "shasum": ""
+            },
+            "require": {
+                "psr/log": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Psys\\Utils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Petrásek",
+                    "email": "davidpetrasek@hotmail.cz"
+                }
+            ],
+            "description": "General purpose set of utilities for web app development",
+            "support": {
+                "issues": "https://github.com/DavidPetrasek/php-utils/issues",
+                "source": "https://github.com/DavidPetrasek/php-utils/tree/v1.0.6"
+            },
+            "time": "2024-06-23T09:54:55+00:00"
         },
         {
             "name": "symfony/cache",

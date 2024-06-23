@@ -19,6 +19,7 @@
     {
         "doctrine/orm": "^2.17",
         "doctrine/doctrine-bundle": "^2.11",
-        "twig/twig": "^3.10"
+        "twig/twig": "^3.10",
+        "psys/utils": "^1.0"
     }
 }

@@ -6,6 +6,7 @@ use Psys\OrderInvoiceManagerBundle\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Psys\OrderInvoiceManagerBundle\Entity\Product;
+use Psys\Utils\Math;
 use Symfony\Component\Filesystem\Filesystem;
 
 
@@ -16,6 +17,7 @@ class OrderManager
         private EntityManagerInterface $entityManager,
         private LoggerInterface $vLogger,
         private Filesystem $filesystem,
+        private Math $math,
         private $projectDir,
     )
     {}    
@@ -111,14 +113,14 @@ class OrderManager
         // Calculate price exclusive of VAT from price inclusive of VAT
         if (!empty($priceVatIncluded)) 
         {            
-            $priceVatExcludedRes = $this->subtractPercentage ($priceVatIncluded, $product->getVatRate());
+            $priceVatExcludedRes = $this->math->subtractPercentage($priceVatIncluded, $product->getVatRate());
             $product->setPriceVatExcluded($priceVatExcludedRes);
         }
 
         // Calculate price inclusive of VAT from price exclusive of VAT
         else if (!empty($priceVatExcluded)) 
         {
-            $priceVatIncluded = ($priceVatExcluded * (100 + $product->getVatRate())) / 100;
+            $priceVatIncluded = $this->math->addPercentage($priceVatExcluded, $product->getVatRate());
             $product->setPriceVatIncluded($priceVatIncluded);
         }
         
@@ -129,11 +131,6 @@ class OrderManager
             'priceVatIncluded' => $priceVatIncluded,
             'priceVatExcluded' => $priceVatExcluded,
         ];
-    }
-    
-    private function subtractPercentage ($number, $percentage)
-    {
-        return $number / ('1.'.$percentage);
     }
 }
 
