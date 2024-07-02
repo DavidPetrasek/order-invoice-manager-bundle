@@ -19,7 +19,7 @@ symfony console doctrine:migrations:migrate
 
 ## 3. Initiate DB settings by running
 
-```
+``` sql
 INSERT INTO oimb_settings (option, value) VALUES ('invoice_proforma_sequential_number', '1');
 INSERT INTO oimb_settings (option, value) VALUES ('invoice_final_sequential_number','1');
 ```
@@ -27,7 +27,7 @@ INSERT INTO oimb_settings (option, value) VALUES ('invoice_final_sequential_numb
 ## 4. Define your method for exporting invoices (optional)
 
 You can use whatever library you want. This example uses Mpdf. 
-```
+``` php
 namespace App\Lib;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -68,7 +68,7 @@ class MyInvoiceManager extends InvoiceManager
 
 ## 5. Define your own category for Order (mandatory) or Product (optional)
 
-```
+``` php
 namespace App\Lib;
 
 enum MyOrderCategory :int
@@ -86,7 +86,7 @@ enum MyOrderCategory :int
 # Example usage
 
 ## Creating a new order a and its proforma invoice:
-```
+``` php
 use Psys\OrderInvoiceManagerBundle\Entity\Invoice;
 use Psys\OrderInvoiceManagerBundle\Entity\InvoiceBuyer;
 use Psys\OrderInvoiceManagerBundle\Entity\InvoiceProforma;
@@ -155,7 +155,7 @@ public function create_order (OrderManager $orderManager, MyInvoiceManager $invo
 ```
 
 ## Reseting sequential numbers:
-```
+``` php
 use App\Lib\MyInvoiceManager;
 
 public function reset_sequential_numbers (MyInvoiceManager $invoiceManager)
