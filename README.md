@@ -8,7 +8,7 @@ When you need to create and manage orders and create and export invoices, but yo
 
 
 ## 1. add to config/bundles.php
-`Psys\OrderInvoiceManagerBundle\OrderInvoiceManagerBundle::class => ['all' => true],` 
+`Psys\OrderInvoiceManagerBundle\PsysOrderInvoiceManagerBundle::class => ['all' => true],` 
 
 ## 2. Add contents from config files (see config folder) to your config files.
 
