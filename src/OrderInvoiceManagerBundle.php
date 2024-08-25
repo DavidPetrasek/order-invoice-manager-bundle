@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 
-class OrderInvoiceManagerBundle extends AbstractBundle
+class PsysOrderInvoiceManagerBundle extends AbstractBundle
 {
     // public function configure(DefinitionConfigurator $definition): void
     // {
