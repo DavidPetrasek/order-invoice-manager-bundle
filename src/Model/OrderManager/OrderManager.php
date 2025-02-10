@@ -36,7 +36,8 @@ class OrderManager
     }
 
     function remove (Order $ent_Order)
-    {                                                
+    {                                 
+        // TODO:               
         // $entity_Soubor_k_vymazani = [];
 
         // $ent_Invoice = $ent_Order->getInvoice();
