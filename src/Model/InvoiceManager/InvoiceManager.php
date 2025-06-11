@@ -22,13 +22,13 @@ abstract class InvoiceManager
     public function setUniqueVariableSymbol (Invoice $invoice)
     {   
         $dbConn = $this->entityManager->getConnection();
-        $this->entityManager->getConnection()->executeStatement('LOCK TABLES oimb_invoice WRITE;');
+        $this->entityManager->getConnection()->executeStatement('LOCK TABLES oim_invoice WRITE;');
         
         $variableSymbol = $this->generateUniqueVariableSymbol();
         
         $dbConn->executeStatement
         (
-            "UPDATE oimb_invoice SET variable_symbol = :variable_symbol WHERE id = :invoice_id;",
+            "UPDATE oim_invoice SET variable_symbol = :variable_symbol WHERE id = :invoice_id;",
             [
                 'variable_symbol' => $variableSymbol,
                 'invoice_id' => $invoice->getId()
@@ -42,14 +42,14 @@ abstract class InvoiceManager
     public function setSequentialNumber (InvoiceProforma|InvoiceFinal $invoiceSpecific)
     {        
         $dbConn = $this->entityManager->getConnection();
-        $this->entityManager->getConnection()->executeStatement('LOCK TABLES oimb_settings WRITE;');
+        $this->entityManager->getConnection()->executeStatement('LOCK TABLES oim_settings WRITE;');
         
         if      ($invoiceSpecific instanceof InvoiceProforma) {$type = 'proforma';}
         else if ($invoiceSpecific instanceof InvoiceFinal)    {$type = 'final';}
 
         $resultSet = $dbConn->executeQuery
         (
-            "SELECT value FROM oimb_settings WHERE option = :option;",
+            "SELECT value FROM oim_settings WHERE option = :option;",
             [
                 'option' => "invoice_{$type}_sequential_number"
             ]
@@ -58,7 +58,7 @@ abstract class InvoiceManager
         
         $dbConn->executeStatement
         (
-            "UPDATE oimb_settings SET value = value+1 WHERE option = :option;",
+            "UPDATE oim_settings SET value = value+1 WHERE option = :option;",
             [
                 'option' => "invoice_{$type}_sequential_number"
             ]
@@ -75,7 +75,7 @@ abstract class InvoiceManager
         $rsm->addScalarResult('variable_symbol', 'variable_symbol');
         $query = $this->entityManager->createNativeQuery
         ('
-            SELECT variable_symbol FROM oimb_invoice 
+            SELECT variable_symbol FROM oim_invoice 
             WHERE variable_symbol = ?'
         , $rsm);
         $query->setParameter(1, $variableSymbol);
@@ -127,11 +127,11 @@ abstract class InvoiceManager
     public function resetSequentialNumbers()
     {            
         $dbConn = $this->entityManager->getConnection();
-        $this->entityManager->getConnection()->executeStatement('LOCK TABLES oimb_settings WRITE;');
+        $this->entityManager->getConnection()->executeStatement('LOCK TABLES oim_settings WRITE;');
                     
         $dbConn->executeStatement
         (
-            "UPDATE oimb_settings SET value = 1 WHERE option = 'invoice_proforma_sequential_number' OR option = 'invoice_final_sequential_number';"
+            "UPDATE oim_settings SET value = 1 WHERE option = 'invoice_proforma_sequential_number' OR option = 'invoice_final_sequential_number';"
         );
         
         $dbConn->executeStatement('UNLOCK TABLES;');

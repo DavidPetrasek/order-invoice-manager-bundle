@@ -15,7 +15,7 @@ use Psys\OrderInvoiceManagerBundle\Model\UserInterface;
 
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ORM\Table (name: 'oimb_order')]
+#[ORM\Table (name: 'oim_order')]
 class Order
 {
     #[ORM\Id]

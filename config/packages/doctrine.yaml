@@ -1,4 +1,0 @@
-doctrine:
-    orm:
-        resolve_target_entities:                                                              
-            Psys\OrderInvoiceManagerBundle\Model\UserInterface:     App\Entity\User  # User which owns the order

@@ -10,7 +10,7 @@ use Psys\OrderInvoiceManagerBundle\Model\OrderManager\AmountType;
 use Psys\OrderInvoiceManagerBundle\Repository\ProductRepository;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ORM\Table (name: 'oimb_product')]
+#[ORM\Table (name: 'oim_product')]
 class Product
 {
     #[ORM\Id]

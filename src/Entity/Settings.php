@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SettingsRepository::class)]
-#[ORM\Table (name: 'oimb_settings')]
+#[ORM\Table (name: 'oim_settings')]
 class Settings
 {    
     #[ORM\Id]

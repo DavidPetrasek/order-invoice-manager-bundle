@@ -15,10 +15,8 @@ class OrderManager
     public function __construct
     (
         private EntityManagerInterface $entityManager,
-        private LoggerInterface $vLogger,
         private Filesystem $filesystem,
-        private Math $math,
-        private $projectDir,
+        private Math $math
     )
     {}    
     
@@ -64,19 +62,11 @@ class OrderManager
         $this->entityManager->flush();
     }
 
-    // function smazatSoubor ($ent, $envVar)
+    // function smazatSoubor ($ent, $dirAbsPath)
     // {
     //     $entita_Soubor = $ent->getSoubor();    
-    //     $filenameAbsPath = $this->projectDir.$_ENV[$envVar].'/'.$entita_Soubor->getNameFileSystem();
-        
-    //     try
-    //     {
-    //         $this->filesystem->remove($filenameAbsPath);
-    //     }
-    //     catch (IOExceptionInterface $exception)
-    //     {
-    //         $this->vLogger->error("Výjimka Filesystem při odstraňování", [$exception->getMessage()]);
-    //     }
+    //     $filenameAbsPath = $dirAbsPath.'/'.$entita_Soubor->getNameFileSystem();
+    //     $this->filesystem->remove($filenameAbsPath);
 
     //     return $entita_Soubor;
     // }

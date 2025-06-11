@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InvoiceProformaRepository::class)]
-#[ORM\Table (name: 'oimb_invoice_proforma')]
+#[ORM\Table (name: 'oim_invoice_proforma')]
 class InvoiceProforma
 {
     use InvoiceTrait;

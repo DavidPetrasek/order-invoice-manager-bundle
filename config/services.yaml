@@ -1,6 +1,0 @@
-services:
-    Psys\OrderInvoiceManagerBundle\Model\OrderManager\OrderManager:
-        autowire: true
-    Psys\OrderInvoiceManagerBundle\Repository\OrderRepository:
-        autowire: true
-    # Add other classes if needed ...

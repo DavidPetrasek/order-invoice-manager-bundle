@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InvoiceSellerRepository::class)]
-#[ORM\Table (name: 'oimb_invoice_seller')]
+#[ORM\Table (name: 'oim_invoice_seller')]
 class InvoiceSeller
 {
     use SubjectAddressTrait;

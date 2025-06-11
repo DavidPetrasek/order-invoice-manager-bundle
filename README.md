@@ -1,18 +1,12 @@
 # Use case
 
-When you need to create and manage orders and create and export invoices, but you're not running a typical online store, so libraries like Shopify, WooCommerce, etc. would be an overkill.
+When you need to create and manage orders and create and export invoices, but you're not running a typical online store — then full-featured e-commerce platforms like Shopify or WooCommerce would be overkill.”
 
 # Installation
 
 `composer require psys/order-invoice-manager-bundle`
 
-
-## 1. add to config/bundles.php
-`Psys\OrderInvoiceManagerBundle\PsysOrderInvoiceManagerBundle::class => ['all' => true],` 
-
-## 2. Add contents from config files (see config folder) to your config files.
-
-## 3. Run
+## 1. Run
 
 ```
 symfony console make:migration
@@ -20,14 +14,14 @@ symfony console doctrine:migrations:migrate
 ```
 
 
-## 4. Initiate DB settings by running
+## 2. Initiate DB settings by running
 
 ``` sql
-INSERT INTO oimb_settings (option, value) VALUES ('invoice_proforma_sequential_number', '1');
-INSERT INTO oimb_settings (option, value) VALUES ('invoice_final_sequential_number','1');
+INSERT INTO oim_settings (option, value) VALUES ('invoice_proforma_sequential_number', '1');
+INSERT INTO oim_settings (option, value) VALUES ('invoice_final_sequential_number','1');
 ```
 
-## 5. Define your method for exporting invoices (optional)
+## 3. Define your method for exporting invoices (optional)
 
 You can use whatever library you want. This example uses Mpdf. 
 ``` php
@@ -69,7 +63,7 @@ class MyInvoiceManager extends InvoiceManager
 }
 ```
 
-## 6. Define your own category for Order (mandatory) or Product (optional)
+## 4. Define your own category for Order (mandatory) or Product (optional)
 
 ``` php
 namespace App\Lib;

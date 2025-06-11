@@ -10,25 +10,20 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class PsysOrderInvoiceManagerBundle extends AbstractBundle
 {
-    // public function configure(DefinitionConfigurator $definition): void
-    // {
-    //     $definition->rootNode()
-    //         ->children()
-    //             ->scalarNode('user_class')->end()
-    //             ->scalarNode('kategorie_enum')->end()
-    //         ->end()
-    //     ;
-    // }
+    public function configure(DefinitionConfigurator $definition): void
+    {
+        $definition->rootNode()
+            ->children()
+                // Required
+                // ->stringNode('order_owner')->cannotBeOverwritten()->isRequired()->cannotBeEmpty()->end()
+                ->end()
+        ;
+    }
 
-    // public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
-    // {
-        // the "$config" variable is already merged and processed so you can
-        // use it directly to configure the service container (when defining an
-        // extension class, you also have to do this merging and processing)
-        // $container->services()
-        //     ->get('acme_social.twitter_client')
-        //     ->arg(0, $config['twitter']['client_id'])
-        //     ->arg(1, $config['twitter']['client_secret'])
-        // ;
-    // }
+    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
+    {
+        $container->import('../config/services.php');
+
+        // $builder->setParameter('oim.order_owner', $config['order_owner']);
+    }
 }
