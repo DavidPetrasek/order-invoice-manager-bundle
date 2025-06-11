@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\Collection;
 
 use Psys\OrderInvoiceManagerBundle\Model\OrderManager\PaymentMode;
 use Psys\OrderInvoiceManagerBundle\Model\OrderManager\State;
-use Psys\OrderInvoiceManagerBundle\Model\UserInterface;
+use Psys\OrderInvoiceManagerBundle\Model\CustomerInterface;
 
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
@@ -54,9 +54,9 @@ class Order
     #[ORM\Column(type: Types::SMALLINT, options:["unsigned" => true])]
     private ?int $category = null;
 
-    #[ORM\ManyToOne(targetEntity: UserInterface::class)] //, inversedBy: 'orders'
+    #[ORM\ManyToOne(targetEntity: CustomerInterface::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
-    private ?UserInterface $user = null;
+    private ?CustomerInterface $customer = null;
 
     #[ORM\Column(type: Types::SMALLINT, options:["unsigned" => true])]
     private ?int $state = null;
@@ -218,14 +218,14 @@ class Order
         return $this;
     }
 
-    public function getUser(): ?UserInterface
+    public function getCustomer(): ?CustomerInterface
     {
-        return $this->user;
+        return $this->customer;
     }
 
-    public function setUser(?UserInterface $user): self
+    public function setCustomer(?CustomerInterface $customer): self
     {
-        $this->user = $user;
+        $this->customer = $customer;
 
         return $this;
     }

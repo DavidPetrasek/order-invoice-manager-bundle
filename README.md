@@ -93,15 +93,17 @@ use Psys\OrderInvoiceManagerBundle\Entity\Product;
 use Psys\OrderInvoiceManagerBundle\Model\OrderManager\AmountType;
 use Psys\OrderInvoiceManagerBundle\Model\OrderManager\PaymentMode;
 use Psys\OrderInvoiceManagerBundle\Model\OrderManager\State;
+use Symfony\Bundle\SecurityBundle\Security;
 use App\Lib\MyInvoiceManager;
 
-public function create_order (OrderManager $orderManager, MyInvoiceManager $invoiceManager)
+
+public function create_order (OrderManager $orderManager, MyInvoiceManager $invoiceManager, Security $security)
 {       
     $ent_Order = new Order();
     $ent_Order->setCategory(MyOrderCategory::FOO);
     $ent_Order->setPaymentMode(PaymentMode::BANK_ACCOUNT_REGULAR);
     $ent_Order->setPaymentModeBankAccount('5465878565/6556');
-    $ent_Order->setUser($this->getUser());
+    $ent_Order->setCustomer($security->getUser()); // Customer can be null
     $ent_Order->setCreatedAt(new \DateTimeImmutable());
     $ent_Order->setState(State::NEW);
 

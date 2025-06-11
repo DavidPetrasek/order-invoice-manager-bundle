@@ -1,7 +1,7 @@
 <?php
 namespace Psys\OrderInvoiceManagerBundle\Model;
 
-interface UserInterface
+interface CustomerInterface
 {
     public function getId(): ?int;
 }
