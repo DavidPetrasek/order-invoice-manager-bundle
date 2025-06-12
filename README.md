@@ -169,7 +169,11 @@ use App\Lib\MyInvoiceManager;
 
 public function reset_sequential_numbers (MyInvoiceManager $invoiceManager)
 {       
-    $invoiceManager->resetSequentialNumbersEveryYear(); // Premade for cron. This cron needs to be run 1 to 10 minutes before a new year.
-    $invoiceManager->resetSequentialNumbers();          // Use for resetting sequential numbers whenever you want
+    // This method is meant to be used inside a cron. 
+    // This cron needs to be run 1 to 10 minutes before a new year.
+    $invoiceManager->resetSequentialNumbersEveryYear();
+
+    // Use this method for resetting sequential numbers whenever you want.
+    $invoiceManager->resetSequentialNumbers();
 }
 ```
