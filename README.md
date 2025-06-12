@@ -6,8 +6,11 @@ When you need to create and manage orders and create and export invoices, but yo
 
 `composer require psys/order-invoice-manager-bundle`
 
-## 1. Add to config/packages/doctrine.yaml
+## 1. Set your customer entity
+Customer owns his orders.
+
 ``` yaml
+# config/packages/doctrine.yaml
   orm:
     resolve_target_entities:                                                              
       Psys\OrderInvoiceManagerBundle\Model\CustomerInterface: App\Entity\YourCustomerEntity
