@@ -15,12 +15,14 @@ When you need to create and manage orders and create and export invoices, but yo
       Psys\OrderInvoiceManagerBundle\Model\CustomerInterface: App\Entity\YourCustomerEntity
 ```
 
-## 2. Run
+## 2. Init database
 
 ``` command
 symfony console make:migration
+```
+Then rename the `migrations/VersionOimbInit.php` file so it runs just after the migration you've just created.
+``` command
 symfony console doctrine:migrations:migrate
-symfony console doctrine:migrations:migrate 'DoctrineMigrations\VersionOIMInit'
 ```
 
 # Optional steps after installation
