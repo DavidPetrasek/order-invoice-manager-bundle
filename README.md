@@ -2,7 +2,7 @@
 
 - You're not running a typical online store — full-featured e-commerce platforms would be overkill.
 - You need to manage orders and associated invoices.
-- You need to export invoices with any PDF library of your choice.
+- You need to export invoices with any PDF library.
 
 # Installation
 
