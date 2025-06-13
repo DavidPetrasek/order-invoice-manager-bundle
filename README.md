@@ -4,10 +4,9 @@ When you need to create and manage orders and create and export invoices, but yo
 
 # Installation
 
-`composer require psys/order-invoice-manager-bundle`
+`composer req psys/order-invoice-manager-bundle`
 
 ## 1. Set your customer entity
-Customer owns his orders.
 
 ``` yaml
 # config/packages/doctrine.yaml
@@ -21,29 +20,24 @@ Customer owns his orders.
 ``` command
 symfony console make:migration
 symfony console doctrine:migrations:migrate
+symfony console doctrine:migrations:migrate 'DoctrineMigrations\VersionOIMInit'
 ```
 
+# Optional steps after installation
 
-## 3. Initiate DB settings by running
-
-``` sql
-INSERT INTO oim_settings (option, value) VALUES ('invoice_proforma_sequential_number', '1');
-INSERT INTO oim_settings (option, value) VALUES ('invoice_final_sequential_number','1');
-```
-
-## 4. Define your own category for Order (mandatory) or Product (optional)
+## 1. Define categories for orders or products
 
 ``` php
 namespace App\Lib;
 
-enum MyOrderCategory :int
+enum MyProductCategory :int
 {
     case FOO = 1;
-    case BAR = 1;
+    case BAR = 2;
 }
 ```
 
-## 5. Define your method for exporting invoices (optional)
+## 2. Define your method for exporting invoices
 
 You can use whatever library you want. This example uses Mpdf. 
 ``` php
@@ -84,10 +78,6 @@ class MyInvoiceManager extends InvoiceManager
     }
 }
 ```
-
-
-
-
 
 
 # Example usage

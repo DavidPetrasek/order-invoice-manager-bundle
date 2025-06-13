@@ -51,7 +51,7 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Invoice $invoice = null;
 
-    #[ORM\Column(type: Types::SMALLINT, options:["unsigned" => true])]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true, options:["unsigned" => true])]
     private ?int $category = null;
 
     #[ORM\ManyToOne(targetEntity: CustomerInterface::class)]
@@ -209,7 +209,7 @@ class Order
         return BackedEnum::from($this->category);
     }
 
-    public function setCategory(int|BackedEnum $category): self
+    public function setCategory(int|BackedEnum|null $category): self
     {
         if ($category instanceof BackedEnum) {$category = $category->value;}
         
