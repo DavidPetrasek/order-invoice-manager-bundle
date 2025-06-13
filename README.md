@@ -1,6 +1,8 @@
 # Use case
 
-When you need to create and manage orders and create and export invoices, but you're not running a typical online store — then full-featured e-commerce platforms like Shopify or WooCommerce would be overkill.”
+- You're not running a typical online store — full-featured e-commerce platforms would be overkill.
+- You need to manage orders and associated invoices.
+- You need to export invoices with any PDF library of your choice.
 
 # Installation
 
