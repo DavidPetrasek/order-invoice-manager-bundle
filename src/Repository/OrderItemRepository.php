@@ -3,25 +3,25 @@ namespace Psys\OrderInvoiceManagerBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Psys\OrderInvoiceManagerBundle\Entity\Product;
+use Psys\OrderInvoiceManagerBundle\Entity\OrderItem;
 
 /**
- * @extends ServiceEntityRepository<Product>
+ * @extends ServiceEntityRepository<OrderItem>
  *
- * @method Product|null find($id, $lockMode = null, $lockVersion = null)
- * @method Product|null findOneBy(array $criteria, array $orderBy = null)
- * @method Product[]    findAll()
- * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method OrderItem|null find($id, $lockMode = null, $lockVersion = null)
+ * @method OrderItem|null findOneBy(array $criteria, array $orderBy = null)
+ * @method OrderItem[]    findAll()
+ * @method OrderItem[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProductRepository extends ServiceEntityRepository
+class OrderItemRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Product::class);
+        parent::__construct($registry, OrderItem::class);
     }
 
 //    /**
-//     * @return Product[] Returns an array of Product objects
+//     * @return OrderItem[] Returns an array of OrderItem objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -35,7 +35,7 @@ class ProductRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Product
+//    public function findOneBySomeField($value): ?OrderItem
 //    {
 //        return $this->createQueryBuilder('b')
 //            ->andWhere('b.exampleField = :val')

@@ -9,8 +9,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 
-use Psys\OrderInvoiceManagerBundle\Model\OrderManager\PaymentMode;
-use Psys\OrderInvoiceManagerBundle\Model\OrderManager\State;
+use Psys\OrderInvoiceManagerBundle\Model\Order\PaymentMode;
+use Psys\OrderInvoiceManagerBundle\Model\Order\State;
 use Psys\OrderInvoiceManagerBundle\Model\CustomerInterface;
 
 
@@ -23,8 +23,8 @@ class Order
     #[ORM\Column(options:["unsigned" => true])]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'order', targetEntity: Product::class, orphanRemoval: true, cascade: ['persist'])]
-    private Collection $products;
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderItem::class, orphanRemoval: true, cascade: ['persist'])]
+    private Collection $orderItems;
     
     #[ORM\Column(type: Types::SMALLINT, options:["unsigned" => true])]
     private ?int $payment_mode = null;
@@ -67,7 +67,7 @@ class Order
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->orderItems = new ArrayCollection();
     }
     
     public function getId(): ?int
@@ -76,29 +76,29 @@ class Order
     }
     
     /**
-     * @return Collection<int, Product>
+     * @return Collection<int, OrderItem>
      */
-    public function getProducts(): Collection
+    public function getOrderItems(): Collection
     {
-        return $this->products;
+        return $this->orderItems;
     }
 
-    public function addProducts(Product $products): static
+    public function addOrderItem(OrderItem $orderItems): static
     {
-        if (!$this->products->contains($products)) {
-            $this->products->add($products);
-            $products->setOrder($this);
+        if (!$this->orderItems->contains($orderItems)) {
+            $this->orderItems->add($orderItems);
+            $orderItems->setOrder($this);
         }
 
         return $this;
     }
 
-    public function removeProducts(Product $products): static
+    public function removeOrderItem(OrderItem $orderItems): static
     {
-        if ($this->products->removeElement($products)) {
+        if ($this->orderItems->removeElement($orderItems)) {
             // set the owning side to null (unless already changed)
-            if ($products->getOrder() === $this) {
-                $products->setOrder(null);
+            if ($orderItems->getOrder() === $this) {
+                $orderItems->setOrder(null);
             }
         }
 

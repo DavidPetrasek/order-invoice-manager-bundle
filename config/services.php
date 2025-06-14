@@ -1,7 +1,7 @@
 <?php
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Psys\OrderInvoiceManagerBundle\Model\OrderManager\OrderManager;
+use Psys\OrderInvoiceManagerBundle\Service\OrderManager\OrderManager;
 use Psys\OrderInvoiceManagerBundle\Repository\OrderRepository;
 use Psys\Utils\Math;
 
@@ -12,7 +12,6 @@ return function(ContainerConfigurator $container): void
         ->set('oim.order_manager', OrderManager::class)
             ->args([
                 service('doctrine.orm.default_entity_manager'),
-                service('filesystem'),
                 service('psys_utils.math'),
             ])
             ->alias(OrderManager::class, 'oim.order_manager')

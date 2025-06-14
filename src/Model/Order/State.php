@@ -1,12 +1,15 @@
 <?php
-namespace Psys\OrderInvoiceManagerBundle\Model\OrderManager;
+namespace Psys\OrderInvoiceManagerBundle\Model\Order;
 
 
-enum PaymentMode :int
+enum State :int
 {
-    case BANK_ACCOUNT_REGULAR = 1;
-    case BANK_ACCOUNT_ONLINE = 2;
-    case CREDIT_CARD = 3;
+    case NEW = 1;
+    case PAID = 2;
+    case PREPARE_FOR_SHIPPING = 3;
+    case SHIPPING = 4;
+    case DELIVERED = 5;
+    case LOST = 6;
         
 //     static function toString ($value) : string
 //     {

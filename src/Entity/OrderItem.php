@@ -6,19 +6,19 @@ use BackedEnum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Psys\OrderInvoiceManagerBundle\Entity\Order;
-use Psys\OrderInvoiceManagerBundle\Model\OrderManager\AmountType;
-use Psys\OrderInvoiceManagerBundle\Repository\ProductRepository;
+use Psys\OrderInvoiceManagerBundle\Model\OrderItem\AmountType;
+use Psys\OrderInvoiceManagerBundle\Repository\OrderItemRepository;
 
-#[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ORM\Table (name: 'oim_product')]
-class Product
+#[ORM\Entity(repositoryClass: OrderItemRepository::class)]
+#[ORM\Table (name: 'oim_order_item')]
+class OrderItem
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(options:["unsigned" => true])]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\ManyToOne(inversedBy: 'orderItems')]
     #[ORM\JoinColumn(nullable: false)]
     private Order $order;
 

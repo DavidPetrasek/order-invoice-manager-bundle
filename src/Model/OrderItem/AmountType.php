@@ -1,15 +1,12 @@
 <?php
-namespace Psys\OrderInvoiceManagerBundle\Model\OrderManager;
+namespace Psys\OrderInvoiceManagerBundle\Model\OrderItem;
 
 
-enum State :int
+enum AmountType :int
 {
-    case NEW = 1;
-    case PAID = 2;
-    case PREPARE_FOR_SHIPPING = 3;
-    case SHIPPING = 4;
-    case DELIVERED = 5;
-    case LOST = 6;
+    case ITEM = 1;
+    case HOUR = 2;
+    case KILOGRAM = 3;
         
 //     static function toString ($value) : string
 //     {

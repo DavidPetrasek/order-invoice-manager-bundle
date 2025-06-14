@@ -1,12 +1,11 @@
 <?php
-namespace Psys\OrderInvoiceManagerBundle\Model\InvoiceManager;
+namespace Psys\OrderInvoiceManagerBundle\Service\InvoiceManager;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Psys\OrderInvoiceManagerBundle\Entity\Invoice;
 use Symfony\Component\HttpFoundation\Response;
 
-use Psys\OrderInvoiceManagerBundle\Entity\Order;
 use Psys\OrderInvoiceManagerBundle\Entity\InvoiceProforma;
 use Psys\OrderInvoiceManagerBundle\Entity\InvoiceFinal;
 

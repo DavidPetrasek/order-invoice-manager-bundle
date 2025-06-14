@@ -1,12 +1,12 @@
 <?php
-namespace Psys\OrderInvoiceManagerBundle\Model\OrderManager;
+namespace Psys\OrderInvoiceManagerBundle\Model\Order;
 
 
-enum AmountType :int
+enum PaymentMode :int
 {
-    case ITEM = 1;
-    case HOUR = 2;
-    case KILOGRAM = 3;
+    case BANK_ACCOUNT_REGULAR = 1;
+    case BANK_ACCOUNT_ONLINE = 2;
+    case CREDIT_CARD = 3;
         
 //     static function toString ($value) : string
 //     {

@@ -11,23 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class InvoiceFinal
 {
     use InvoiceTrait;
-
-    // #[ORM\ManyToOne]
-    // #[ORM\JoinColumn(nullable: false)]
-    // private ?Soubor $soubor = null;
     
     #[ORM\OneToOne(mappedBy: 'invoice_final', cascade: ['persist', 'remove'])]
     private ?Invoice $invoice = null;
-
-    // public function getSoubor(): ?Soubor
-    // {
-    //     return $this->soubor;
-    // }
-
-    // public function setSoubor(?Soubor $soubor): self
-    // {
-    //     $this->soubor = $soubor;
-
-    //     return $this;
-    // }
 }

@@ -22,19 +22,19 @@
 ``` command
 symfony console make:migration
 ```
-Then rename the `migrations/VersionOimbInit.php` file so it runs just after the migration you've just created.
+Then rename the `migrations/VersionOimbInit.php` (also the class inside), so it runs just after the migration you've just created.
 ``` command
 symfony console doctrine:migrations:migrate
 ```
 
 # Optional steps after installation
 
-## 1. Define categories for orders or products
+## 1. Define categories for orders and/or its items
 
 ``` php
 namespace App\Lib;
 
-enum MyProductCategory :int
+enum MyOrderItemCategory :int
 {
     case FOO = 1;
     case BAR = 2;
@@ -49,7 +49,7 @@ namespace App\Lib;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psys\OrderInvoiceManagerBundle\Entity\Order;
-use Psys\OrderInvoiceManagerBundle\Model\InvoiceManager\InvoiceManager;
+use Psys\OrderInvoiceManagerBundle\Service\InvoiceManager\InvoiceManager;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
@@ -93,10 +93,10 @@ use Psys\OrderInvoiceManagerBundle\Entity\InvoiceBuyer;
 use Psys\OrderInvoiceManagerBundle\Entity\InvoiceProforma;
 use Psys\OrderInvoiceManagerBundle\Entity\InvoiceSeller;
 use Psys\OrderInvoiceManagerBundle\Entity\Order;
-use Psys\OrderInvoiceManagerBundle\Entity\Product;
-use Psys\OrderInvoiceManagerBundle\Model\OrderManager\AmountType;
-use Psys\OrderInvoiceManagerBundle\Model\OrderManager\PaymentMode;
-use Psys\OrderInvoiceManagerBundle\Model\OrderManager\State;
+use Psys\OrderInvoiceManagerBundle\Entity\OrderItem;
+use Psys\OrderInvoiceManagerBundle\Model\OrderItem\AmountType;
+use Psys\OrderInvoiceManagerBundle\Model\Order\PaymentMode;
+use Psys\OrderInvoiceManagerBundle\Model\Order\State;
 use Symfony\Bundle\SecurityBundle\Security;
 use App\Lib\MyInvoiceManager;
 
@@ -111,8 +111,8 @@ public function create_order (OrderManager $orderManager, MyInvoiceManager $invo
     $ent_Order->setCreatedAt(new \DateTimeImmutable());
     $ent_Order->setState(State::NEW);
 
-    $ent_Order->addProducts(
-        (new Product())
+    $ent_Order->addOrderItem(
+        (new OrderItem())
             ->setName('Foo')
             ->setPriceVatIncluded(1599)    // If not set, it will be automatically calculated from price exclusive of VAT
             ->setPriceVatExcluded(1300)    // If not set, it will be automatically calculated from price inclusive of VAT

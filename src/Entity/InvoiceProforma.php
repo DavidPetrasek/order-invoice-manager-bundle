@@ -11,28 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
 class InvoiceProforma
 {
     use InvoiceTrait;
-
-    // #[ORM\ManyToOne]
-    // private ?Soubor $soubor = null;
     
     #[ORM\OneToOne(mappedBy: 'invoice_proforma', cascade: ['persist', 'remove'])]
     private ?Invoice $invoice = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private \DateTimeImmutable $due_date;
-    
-
-    // public function getSoubor(): ?Soubor
-    // {
-    //     return $this->soubor;
-    // }
-
-    // public function setSoubor(?Soubor $soubor): self
-    // {
-    //     $this->soubor = $soubor;
-
-    //     return $this;
-    // }
 
     public function getDueDate(): \DateTimeImmutable
     {
